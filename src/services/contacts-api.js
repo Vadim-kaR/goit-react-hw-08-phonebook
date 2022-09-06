@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { BASE_URL } from '../constants/baseURL';
+// import { BASE_URL } from '../constants/baseURL';
 
-axios.defaults.baseURL = BASE_URL;
+// axios.defaults.baseURL = BASE_URL;
 
 export const fetchAllContacts = async () => {
   const { data } = await axios.get('/contacts');

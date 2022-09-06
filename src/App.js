@@ -1,33 +1,21 @@
-import { ContactsList } from 'components/ContatsList/ContacstsList';
-import { ContactForm } from './components/ContactForm/ContactForm';
-import { Filter } from 'components/Filter/Filter';
-import { ContactsTitle } from 'components/ContactsTitle/ContactsTitle';
-import { Box } from 'components/Box/Box';
-import { ToastContainer } from 'react-toastify';
+import Home from 'pages/Home';
+import Login from 'pages/Login';
+import Register from 'pages/Register';
+import { Route, Routes } from 'react-router-dom';
+import { SharedLayout } from 'Layout';
+import Contacts from 'pages/Contacts';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <Box pt="l" display="flex" justifyContent="center">
-      <Box
-        width="400px"
-        minHeight="400px"
-        p="l"
-        bg="accent"
-        flexDirection="column"
-        display="flex"
-        alignItems="center"
-        overflow="hidden"
-        borderRadius="min"
-      >
-        <h1>PhoneBook</h1>
-        <ContactForm />
-        <ContactsTitle />
-        <Filter />
-        <ContactsList />
-        <ToastContainer autoClose={2000} />
-      </Box>
-    </Box>
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/contacts" element={<Contacts />} />
+      </Route>
+    </Routes>
   );
 }
 
