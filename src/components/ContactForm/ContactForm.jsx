@@ -27,7 +27,7 @@ const ContactForm = () => {
         /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
         'name may contain only letters'
       ),
-    phone: yup
+    number: yup
       .string()
       .required()
       .matches(
@@ -36,10 +36,10 @@ const ContactForm = () => {
       ),
   });
 
-  const handleContactSubmit = ({ name, phone }, { resetForm }) => {
+  const handleContactSubmit = ({ name, number }, { resetForm }) => {
     const newContact = {
       name,
-      phone,
+      number,
     };
 
     const alreadyName = contacts.find(
@@ -58,7 +58,7 @@ const ContactForm = () => {
     <Formik
       initialValues={{
         name: '',
-        phone: '',
+        number: '',
       }}
       validationSchema={schema}
       onSubmit={handleContactSubmit}
@@ -78,13 +78,13 @@ const ContactForm = () => {
 
             <Error component="div" name="name" />
           </InputField>
-          <InputField htmlFor="phone">
+          <InputField htmlFor="number">
             <Box display="flex">
               <InputTitle>Phone</InputTitle>
-              <Inpute type="tel" name="phone" />
+              <Inpute type="tel" name="number" />
             </Box>
 
-            <Error component="div" name="phone" />
+            <Error component="div" name="number" />
           </InputField>
           <AddBtn type="submit">
             <TiPlus size={12} />

@@ -34,11 +34,11 @@ const ContactsList = () => {
   return (
     <Box pt="l" pb="l" width="100%">
       <ul>
-        {getFiltredContact().map(({ id, name, phone }) => (
+        {getFiltredContact().map(({ id, name, number }) => (
           <ContactItem key={id}>
             <Text>
               <NameText>{name}:</NameText>
-              <NumberText>{phone}</NumberText>
+              <NumberText>{number}</NumberText>
             </Text>
             <DeleteBtn onClick={() => deleteContact(id)}>Delete</DeleteBtn>
           </ContactItem>
