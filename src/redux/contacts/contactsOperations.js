@@ -4,13 +4,13 @@ import axios from 'axios';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
-  async (_, { rejectWithValue }) => {
+  async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('/contacts');
       return data;
     } catch (error) {
       toast.error(`is something wrong... ${error.message}`);
-      return rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -32,9 +32,9 @@ export const removeContact = createAsyncThunk(
 
 export const addContact = createAsyncThunk(
   'contact/add',
-  async (contact, { rejectWithValue }) => {
+  async (newContact, { rejectWithValue }) => {
     try {
-      await axios.post('/contacts', contact);
+      await axios.post('/contacts', newContact);
       toast.success('contact added');
       const { data } = await axios.get('/contacts');
       return data;

@@ -9,6 +9,8 @@ import { useAuth } from './hooks/useAuth';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from './redux/auth/auth-operations';
+import PublicRoute from 'components/Routes/PublicRoute';
+import PrivateRoute from 'components/Routes/PrivatRoute';
 
 function App() {
   const dispatch = useDispatch();
@@ -18,7 +20,6 @@ function App() {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
-  console.log(isRefreshing);
   return (
     <>
       {isRefreshing ? (
@@ -26,10 +27,33 @@ function App() {
       ) : (
         <Routes>
           <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/contacts" element={<Contacts />} />
+            <Route index element={<PublicRoute component={<Home />} />} />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute
+                  restricted
+                  redirectedTo="/contacts"
+                  component={<Register />}
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute
+                  restricted
+                  redirectedTo="/contacts"
+                  component={<Login />}
+                />
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute redirectTo="/login" component={<Contacts />} />
+              }
+            />
           </Route>
         </Routes>
       )}
