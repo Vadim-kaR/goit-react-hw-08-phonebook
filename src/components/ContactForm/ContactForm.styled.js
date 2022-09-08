@@ -27,7 +27,6 @@ export const AddBtn = styled.button`
     background-color: #027583;
     color: #fff;
     border: 1px solid #fff;
-    font-weight: 500;
   }
 `;
 

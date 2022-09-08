@@ -7,9 +7,14 @@ import { useAuth } from 'hooks';
 const AppBar = () => {
   const { isLoggedIn } = useAuth();
 
-  // console.log(isLoggedIn);
   return (
-    <Box as="header" display="flex" justifyContent="space-between">
+    <Box
+      as="header"
+      pt={15}
+      pb={5}
+      display="flex"
+      justifyContent="space-between"
+    >
       <Navigation />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </Box>

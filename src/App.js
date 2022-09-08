@@ -1,16 +1,17 @@
-import Home from 'pages/Home';
-import Login from 'pages/Login';
-import Register from 'pages/Register';
 import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from 'Layout';
-import Contacts from 'pages/Contacts';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from './hooks/useAuth';
-import { useEffect } from 'react';
+import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from './redux/auth/auth-operations';
 import PublicRoute from 'components/Routes/PublicRoute';
 import PrivateRoute from 'components/Routes/PrivatRoute';
+
+const Home = lazy(() => import('./pages/Home'));
+const Register = lazy(() => import('./pages/Register/Register'));
+const Login = lazy(() => import('./pages/Login/Login'));
+const Contacts = lazy(() => import('./pages/Contacts'));
 
 function App() {
   const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from './Navigation.styled';
 import { useAuth } from 'hooks';
 
 const Navigation = () => {
@@ -6,8 +6,8 @@ const Navigation = () => {
 
   return (
     <nav>
-      <Link to="/">Главная</Link>
-      {isLoggedIn && <Link to="/contacts">Контакты</Link>}
+      <Link to="/">Home</Link>
+      {isLoggedIn && <Link to="/contacts">Contacts</Link>}
     </nav>
   );
 };

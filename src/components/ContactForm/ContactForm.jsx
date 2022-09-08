@@ -80,7 +80,7 @@ const ContactForm = () => {
           </InputField>
           <InputField htmlFor="number">
             <Box display="flex">
-              <InputTitle>Phone number</InputTitle>
+              <InputTitle>Phone</InputTitle>
               <Inpute type="tel" name="number" />
             </Box>
 
