@@ -3,7 +3,7 @@ import { Field, ErrorMessage } from 'formik';
 
 export const InputTitle = styled.span`
   margin-right: 10px;
-  width: 50px;
+  width: 45px;
 `;
 
 export const InputField = styled.label`
@@ -36,7 +36,7 @@ export const Inpute = styled(Field)`
   height: 20px;
   outline: none;
   padding: 3px 10px;
-  width: 180px;
+  width: 200px;
 `;
 
 export const Error = styled(ErrorMessage)`

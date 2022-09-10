@@ -1,7 +1,14 @@
-// import PropTypes from 'prop-types';
 import { Form, Formik } from 'formik';
+import { useState } from 'react';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 import { toast } from 'react-toastify';
 import { Box } from 'components/Box/Box';
+import * as yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contacts/contactsOperations';
+import { contactsSelectors } from 'redux/contacts';
+import { TiPlus } from 'react-icons/ti';
 import {
   InputTitle,
   InputField,
@@ -9,37 +16,27 @@ import {
   Inpute,
   Error,
 } from './ContactForm.styled';
-import * as yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/contactsOperations';
-import { contactsSelectors } from 'redux/contacts';
 
-import { TiPlus } from 'react-icons/ti';
 const ContactForm = () => {
   const dispatch = useDispatch();
+  const [number, setNumber] = useState('');
   const contacts = useSelector(contactsSelectors.getContacts);
 
   let schema = yup.object().shape({
     name: yup
       .string()
+      .max(16)
       .required()
       .matches(
         /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
         'name may contain only letters'
       ),
-    number: yup
-      .string()
-      .required()
-      .matches(
-        /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
-        'Phone number is not valid'
-      ),
   });
 
-  const handleContactSubmit = ({ name, number }, { resetForm }) => {
+  const handleContactSubmit = ({ name }, { resetForm }) => {
     const newContact = {
       name,
-      number,
+      ...number,
     };
 
     const alreadyName = contacts.find(
@@ -51,6 +48,7 @@ const ContactForm = () => {
       return;
     }
     dispatch(addContact(newContact));
+    setNumber('');
     resetForm();
   };
 
@@ -58,7 +56,6 @@ const ContactForm = () => {
     <Formik
       initialValues={{
         name: '',
-        number: '',
       }}
       validationSchema={schema}
       onSubmit={handleContactSubmit}
@@ -70,7 +67,7 @@ const ContactForm = () => {
           justifyContent="center"
           p="l"
         >
-          <InputField htmlFor="name">
+          <InputField>
             <Box display="flex">
               <InputTitle>Name</InputTitle>
               <Inpute type="text" name="name" />
@@ -78,10 +75,22 @@ const ContactForm = () => {
 
             <Error component="div" name="name" />
           </InputField>
-          <InputField htmlFor="number">
+          <InputField>
             <Box display="flex">
               <InputTitle>Phone</InputTitle>
-              <Inpute type="tel" name="number" />
+              <PhoneInput
+                country={'ua'}
+                onChange={number => setNumber({ number })}
+                inputProps={{
+                  name: 'number',
+                  required: true,
+                  autoFocus: true,
+                }}
+                inputStyle={{
+                  height: '23px',
+                  width: '200px',
+                }}
+              />
             </Box>
 
             <Error component="div" name="number" />
