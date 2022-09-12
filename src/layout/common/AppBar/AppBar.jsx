@@ -1,7 +1,7 @@
-import Navigation from 'layout/Navigation';
-import UserMenu from 'layout/UserMenu';
+import Navigation from '../Navigation';
+import UserMenu from '../UserMenu';
 import { Box } from 'components/Box';
-import AuthNav from 'layout/AuthNav/AuthNav';
+import AuthNav from 'layout/common/AuthNav/AuthNav';
 import { useAuth } from 'hooks/useAuth';
 
 const AppBar = () => {

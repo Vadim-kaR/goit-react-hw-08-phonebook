@@ -2,9 +2,10 @@ import { authOperations } from 'redux/auth';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { FormInpute } from '../common/Inpute/Inpute';
-import { Button } from '../common/Button/Button';
-import { FormikForm, Error } from './RegisterForm.styled';
+import { FormInput } from './common/Input/Input';
+import { Button } from './common/Button/Button';
+import { Error } from './common/Error/Error';
+import { Form } from './common/Form/Form';
 
 export const RegisterForm = () => {
   let schema = yup.object().shape({
@@ -33,20 +34,20 @@ export const RegisterForm = () => {
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
-      <FormikForm autoComplete="off">
-        <FormInpute text={'Name'} name={'name'}>
-          <Error component="div" name="name" />
-        </FormInpute>
+      <Form>
+        <FormInput text={'Name'} name={'name'}>
+          <Error name={'name'} />
+        </FormInput>
 
-        <FormInpute text={'Email'} name={'email'}>
-          <Error component="div" name="email" />
-        </FormInpute>
+        <FormInput text={'Email'} name={'email'}>
+          <Error name={'email'} />
+        </FormInput>
 
-        <FormInpute text={'Password'} name={'password'} type={'password'}>
-          <Error component="div" name="password" />
-        </FormInpute>
+        <FormInput text={'Password'} name={'password'} type={'password'}>
+          <Error name={'password'} />
+        </FormInput>
         <Button type="submit">Register</Button>
-      </FormikForm>
+      </Form>
     </Formik>
   );
 };

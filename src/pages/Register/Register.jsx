@@ -1,5 +1,5 @@
 import { Box } from 'components/Box';
-import { RegisterForm } from 'components/Auth/RegisterForm/RegisterForm';
+import { RegisterForm } from 'components/Auth';
 
 const Register = () => {
   return (

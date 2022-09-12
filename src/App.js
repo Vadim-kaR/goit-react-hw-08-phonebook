@@ -4,15 +4,15 @@ import { useAuth } from './hooks/useAuth';
 import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
-import PublicRoute from 'hocs/Routes/PublicRoute';
-import PrivateRoute from 'hocs/Routes/PrivatRoute';
+import { PublicRoute } from 'hocs';
+import { PrivateRoute } from 'hocs';
 import { Suspense } from 'react';
 
 const Home = lazy(() => import('./pages/Home'));
 const Register = lazy(() => import('./pages/Register/Register'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const Contacts = lazy(() => import('./pages/Contacts'));
-const SharedLayout = lazy(() => import('./layout/SharedLayout/SharedLayout'));
+const SharedLayout = lazy(() => import('./layout/SharedLayout'));
 const NoteFound = lazy(() => import('./pages/NotFound'));
 
 function App() {

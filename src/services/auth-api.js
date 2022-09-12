@@ -1,41 +1,15 @@
-import { axiosIntance } from './API';
-import { token } from './API';
-import { toast } from 'react-toastify';
+import axios from 'axios';
+import { BASE_URL } from 'constants';
 
-export const createNewUser = async credentials => {
-  try {
-    const { data } = await axiosIntance.post('/users/signup', credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    toast.error(`${error.message}`);
-  }
-};
+export const authAPI = axios.create({
+  baseURL: BASE_URL,
+});
 
-export const logInUser = async credentials => {
-  try {
-    const { data } = await axiosIntance.post('/users/login', credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    toast.error(`${error.message}`);
-  }
-};
-
-export const logOutUser = async () => {
-  try {
-    await axiosIntance.post('users/logout');
-    token.unset();
-  } catch (error) {
-    toast.error(`${error.message}`);
-  }
-};
-
-export const refreshUser = async () => {
-  try {
-    const { data } = await axiosIntance.get('/users/current');
-    return data;
-  } catch (error) {
-    toast.error(`${error.message}`);
-  }
+export const token = {
+  set(token) {
+    authAPI.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    authAPI.defaults.headers.common.Authorization = '';
+  },
 };

@@ -1,3 +1,3 @@
-export * from './API';
 export * from './auth-api';
-export * from './contacts-api';
+export * from './auth';
+export * from './contacts';

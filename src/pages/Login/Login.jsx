@@ -1,5 +1,5 @@
 import { Box } from 'components/Box';
-import { LoginForm } from 'components/Auth/LoginForm/LoginForm';
+import { LoginForm } from 'components/Auth';
 
 const Login = () => {
   return (

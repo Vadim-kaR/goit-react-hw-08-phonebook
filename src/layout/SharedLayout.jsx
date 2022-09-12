@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import AppBar from 'layout/AppBar';
+import AppBar from './common/AppBar/AppBar';
 import { Box } from 'components/Box';
 import { ToastContainer } from 'react-toastify';
 
